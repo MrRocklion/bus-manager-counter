@@ -1,0 +1,18 @@
+sudo nano /etc/systemd/system/bus-manager-counter.service
+
+sudo systemctl daemon-reload
+sudo systemctl enable bus-manager-counter
+sudo systemctl restart bus-manager-counter
+
+[Unit]
+Description=App Conteo
+After=network.target
+
+[Service]
+User=admin
+WorkingDirectory=/home/admin/bus-manager-counter/
+ExecStart=/home/admin/env/bin/python3 /home/admin/bus-manager-counter/main.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

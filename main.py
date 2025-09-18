@@ -95,8 +95,8 @@ def main(show_window=False):
         class_list=CLASS_LIST,
         track_thresh=TRACK_TRESH,
         track_buffer=TRACK_BUFFER,
-        match_thresh=0.9999,
-        trail_depth=20,
+        match_thresh=0.85,
+        trail_depth=15,
         show_overlay=False,
         anchor_point=degirum_tools.AnchorPoint.BOTTOM_CENTER
     )

@@ -1,4 +1,3 @@
-
 #version 2
 import cv2
 import requests
@@ -6,9 +5,10 @@ import numpy as np
 import degirum as dg
 import degirum_tools
 from concurrent.futures import ThreadPoolExecutor
+import argparse
 
 
-#funciones
+# funciones
 def get_config_device() -> dict | None:
     """Obtiene la configuración del dispositivo desde un archivo JSON."""
     try:
@@ -29,7 +29,7 @@ formated_zones = []
 for zone in zones:
     aux_polygon = []
     for polygon in zone:
-        aux_polygon.append([polygon['x'],polygon['y']])
+        aux_polygon.append([polygon['x'], polygon['y']])
     formated_zones.append(aux_polygon)
 
 # Configuraciones
@@ -43,12 +43,10 @@ TRACK_BUFFER = init_data['track_buffer']
 TRACK_TRESH = init_data['track_threshold']
 
 
-
-
-
 def get_bottom_center(box):
     x1, y1, x2, y2 = box
     return (x1 + x2) // 2, y2
+
 
 def send_api_request(special=False):
     try:
@@ -57,7 +55,8 @@ def send_api_request(special=False):
     except requests.RequestException as e:
         print("API conexión fallida:", e)
 
-def mask_frame_generator(video_source,cross_line_y=550,zones=[]):
+
+def mask_frame_generator(video_source, cross_line_y=550, zones=[]):
     stream = cv2.VideoCapture(video_source)
     try:
         while True:
@@ -69,7 +68,7 @@ def mask_frame_generator(video_source,cross_line_y=550,zones=[]):
 
             excluded_zones = []
             for zone in zones:
-                excluded_zones.append(np.array(zone,dtype=np.int32))
+                excluded_zones.append(np.array(zone, dtype=np.int32))
             cv2.fillPoly(mask, excluded_zones, 0)
             
             mask_3ch = cv2.merge([mask, mask, mask])
@@ -128,4 +127,16 @@ def main(show_window=False):
 
 
 if __name__ == "__main__":
-    main(show_window=False)
+    parser = argparse.ArgumentParser(description="Contador de personas con cámara RTSP y modelo DeGirum")
+    parser.add_argument(
+        "--show",
+        type=str,
+        default="false",
+        help="Mostrar ventana con overlay (true/false). Por defecto: false"
+    )
+    args = parser.parse_args()
+
+    # Convertir a booleano
+    show_window = args.show.lower() in ["true", "1", "yes", "y"]
+
+    main(show_window=show_window)

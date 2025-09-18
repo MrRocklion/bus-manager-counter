@@ -1,3 +1,7 @@
+pip install degirum
+pip install degirum-tools
+sudo apt install hailo-all
+
 sudo nano /etc/systemd/system/bus-manager-counter.service
 
 sudo systemctl daemon-reload

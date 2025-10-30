@@ -36,8 +36,8 @@ for zone in zones:
 VIDEO_PATH = f"rtsp://{init_data['user_camera']}:{init_data['password_camera']}@{init_data['ip_counter_camera']}:554/cam/realmonitor?channel=1&subtype=0"
 CLASS_LIST = ["Person"]
 CROSS_LINE_Y = init_data['cross_line_y']
-MODEL_PATH = "/home/admin/bus-manager-counter/models/yolov8n_relu6_person--640x640_quant_hailort_multidevice_1"
-MODEL_NAME = "yolov8n_relu6_person--640x640_quant_hailort_multidevice_1"
+MODEL_PATH = "/home/admin/bus-manager-counter/models/passenger-urban-bus--640x640_quant_hailort_multidevice_1.hef"
+MODEL_NAME = "passenger-urban-bus--640x640_quant_hailort_multidevice_1.hef"
 API_URL = "http://localhost:8000/api/passengers"
 TRACK_BUFFER = init_data['track_buffer']
 TRACK_TRESH = init_data['track_threshold']

@@ -106,7 +106,7 @@ def main(show_window=False,test_mode=False):
     crossed_ids = set()
 
     if test_mode:
-        VIDEO_PATH = "/videos/test1.mp4"
+        VIDEO_PATH = "/video/test1.mp4"
 
 
     with ThreadPoolExecutor(max_workers=5) as pool:

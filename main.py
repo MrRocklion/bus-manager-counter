@@ -56,8 +56,10 @@ def send_api_request(special=False):
         print("API conexión fallida:", e)
 
 
-def mask_frame_generator(video_source, cross_line_y=550, zones=[]):
+def mask_frame_generator(video_source, cross_line_y=550, zones=[],test=False):
     stream = cv2.VideoCapture(video_source)
+    if test:
+        stream = cv2.resize(frame, (1080, 720), interpolation=cv2.INTER_AREA)
     try:
         while True:
             ret, frame = stream.read()
@@ -106,12 +108,12 @@ def main(show_window=False,test_mode=False):
     crossed_ids = set()
 
     if test_mode:
-        VIDEO_PATH = "/video/test1.mp4"
+        VIDEO_PATH = "video/test1.mp4"
         print("show video")
 
 
     with ThreadPoolExecutor(max_workers=5) as pool:
-        for result in model.predict_batch(mask_frame_generator(VIDEO_PATH, cross_line_y=CROSS_LINE_Y, zones=formated_zones)):
+        for result in model.predict_batch(mask_frame_generator(VIDEO_PATH, cross_line_y=CROSS_LINE_Y, zones=formated_zones,test=test_mode)):
             if show_window:
                 cv2.imshow("CAM COUNTER", result.image_overlay)
                 if cv2.waitKey(1) & 0xFF == ord('q'):

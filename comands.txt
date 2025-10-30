@@ -1,0 +1,7 @@
+scp -r ./object_detection_model admin@192.168.20.209:/home/admin
+scp test2.py admin@192.168.20.209:/home/admin/object_detection_model
+scp  opncv_rtsp.py admin@192.168.20.209:/home/admin/object_detection_model
+scp  app.py admin@192.168.20.209:/home/admin/object_detection_model
+scp  main.py admin@raspberry5.local:/home/admin/object_detection_model
+scp  normal_day.mp4 admin@192.168.20.209:/home/admin/object_detection_model/assets
+

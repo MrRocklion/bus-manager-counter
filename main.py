@@ -36,7 +36,7 @@ for zone in zones:
 VIDEO_PATH = f"rtsp://{init_data['user_camera']}:{init_data['password_camera']}@{init_data['ip_counter_camera']}:554/cam/realmonitor?channel=1&subtype=0"
 CLASS_LIST = ["Person"]
 CROSS_LINE_Y = init_data['cross_line_y']
-MODEL_PATH = "/home/admin/bus-manager-counter/yolov8n_relu6_person--640x640_quant_hailort_multidevice_1"
+MODEL_PATH = "/home/admin/bus-manager-counter/models/yolov8n_relu6_person--640x640_quant_hailort_multidevice_1"
 MODEL_NAME = "yolov8n_relu6_person--640x640_quant_hailort_multidevice_1"
 API_URL = "http://localhost:8000/api/passengers"
 TRACK_BUFFER = init_data['track_buffer']
@@ -81,7 +81,7 @@ def mask_frame_generator(video_source, cross_line_y=550, zones=[]):
         stream.release()
 
 
-def main(show_window=False,test=False):
+def main(show_window=False,test_mode=False):
     model = dg.load_model(
         model_name=MODEL_NAME,
         inference_host_address="@local",
@@ -105,7 +105,7 @@ def main(show_window=False,test=False):
     counter = 0
     crossed_ids = set()
 
-    if test:
+    if test_mode:
         VIDEO_PATH = "/videos/test1.mp4"
 
 

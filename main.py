@@ -58,13 +58,13 @@ def send_api_request(special=False):
 
 def mask_frame_generator(video_source, cross_line_y=550, zones=[],test=False):
     stream = cv2.VideoCapture(video_source)
-    if test:
-        stream = cv2.resize(frame, (1080, 720), interpolation=cv2.INTER_AREA)
     try:
         while True:
             ret, frame = stream.read()
             if not ret:
                 break
+            if test:
+                frame = cv2.resize(frame, (1080, 720), interpolation=cv2.INTER_AREA)
             height, width, _ = frame.shape
             mask = np.ones((height, width), dtype=np.uint8) * 255
 

@@ -34,7 +34,7 @@ for zone in zones:
 
 # Configuraciones
 VIDEO_PATH = f"rtsp://{init_data['user_camera']}:{init_data['password_camera']}@{init_data['ip_counter_camera']}:554/cam/realmonitor?channel=1&subtype=0"
-CLASS_LIST = ["Person"]
+CLASS_LIST = ["passenger"]
 CROSS_LINE_Y = init_data['cross_line_y']
 MODEL_PATH = "/home/admin/bus-manager-counter/models/passenger-urban-bus--640x640_quant_hailort_multidevice_1"
 MODEL_NAME = "passenger-urban-bus--640x640_quant_hailort_multidevice_1"

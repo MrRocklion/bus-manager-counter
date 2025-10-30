@@ -107,6 +107,7 @@ def main(show_window=False,test_mode=False):
 
     if test_mode:
         VIDEO_PATH = "/video/test1.mp4"
+        print("show video")
 
 
     with ThreadPoolExecutor(max_workers=5) as pool:
